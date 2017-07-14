@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Angular Form</title>
-    <script type="text/javascript" src="../vendors/angular.min.js"></script>
-    <script type="text/javascript" src="../scripts/client.js"></script>
-    <link rel="stylesheet" href="styles.css">
+<head>
+  <meta charset="utf-8">
+  <title>Angular Form</title>
 
-    </script>
-  </head>
-  <body ng-app="fabForm">
+  <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="text/javascript" src="../vendors/angular.min.js"></script>
+  <script type="text/javascript" src="../scripts/client.js"></script>
+
+</script>
+</head>
+<body ng-app="fabForm">
+  <div class="container">
     <h1>Fabulous Form</h1>
     <div ng-controller="FormController as form">
-      <input type="text" placeholder="Name" ng-model="name">
-      <input type="text" placeholder="Write your message" ng-model="message">
-<!--add what is being passed into the function on client.js-->
-      <button ng-click="form.addInfo(name, message)">Submit</button>
-      <div ng-repeat="content in form.allMessages">
-        <p>{{content.name}}<br>{{content.message}}</p>
-      </div>
-    </div>
+      <form class="form-inline">
+        <div class="form-group col-md-4">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" placeholder="Name" id="name" ng-model="name">
+        </div>
+        <div class="form-group col-md-8">
+          <label for="message">Message</label>
+          <input type="text" class="form-control" placeholder="Write your message" id="message" ng-model="message">
+          <!--add what is being passed into the function on client.js-->
+          <button class="btn btn-primary" ng-click="form.addInfo(name, message)">Submit</button>
+        </div>
+      </form> <!-- End of form -->
+
+      <div class="messageList">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Message</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="content in form.allMessages">
+              <td>{{content.name}}</td>
+              <td>{{content.message}}</td>
+              <td><button class="btn btn-danger" type="button" name="button" ng-click="form.delete($index)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div> <!--End of FormController -->
+    </div> <!--End of Bootstrap Container-->
   </body>
-</html>
+  </html>

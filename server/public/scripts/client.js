@@ -20,4 +20,8 @@ form.allMessages.push(content);
 console.log(form.allMessages);
 };
 
+form.delete = function(index){
+  form.allMessages.splice(index,1);
+};
+
 });
